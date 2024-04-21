@@ -71,32 +71,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/TextPlugin.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
 
-
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     fetch('https://gamess.pythonanywhere.com/data')
       .then(response => response.json())
       .then(data => {
-        let tl = gsap.timeline();
-        tl.to("#visit", {vars: {value: data.visit}, ease: "linear", onUpdate: updateVisit}, "-=0.5")
-          .to("#plr", {vars: {value: data.plr}, ease: "linear", duration: 0.6, onUpdate: updatePLR}, "-=0.5")
-          .to("#fav", {vars: {value: data.fav}, ease: "linear", duration: 0.6, onUpdate: updateFav}, "-=0.5");
+        gsap.to("#visit", {textContent: data.visit, ease: "linear"});
+        gsap.to("#plr", {textContent: data.plr, ease: "linear", duration: 0.6});
+        gsap.to("#fav", {textContent: data.fav, ease: "linear", duration: 0.6});
       })
       .catch(error => {
         console.error('Veri getirme hatası:', error);
       });
-  
-    function updateVisit() {
-      document.getElementById("visit").textContent = this.vars.value;
-    }
-  
-    function updatePLR() {
-      document.getElementById("plr").textContent = this.vars.value;
-    }
-  
-    function updateFav() {
-      document.getElementById("fav").textContent = this.vars.value;
-    }
   });
   </script>
   
