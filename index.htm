@@ -76,13 +76,28 @@
     fetch('https://gamess.pythonanywhere.com/data')
       .then(response => response.json())
       .then(data => {
-        gsap.to("#visit", {text: {value: data.visit, format: value => Math.round(value)}, ease: "linear"});
-        gsap.to("#plr", {text: {value: data.plr, format: value => Math.round(value)}, ease: "linear", duration: 0.6});
-        gsap.to("#fav", {text: {value: data.fav, format: value => Math.round(value)}, ease: "linear", duration: 0.6});
+        gsap.to("#visit", {textContent: data.visit, ease: "linear", duration: 1, repeat: Math.floor(data.visit / 10), onUpdate: updateVisit});
+        gsap.to("#plr", {textContent: data.plr, ease: "linear", duration: 1, repeat: Math.floor(data.plr / 10), onUpdate: updatePLR});
+        gsap.to("#fav", {textContent: data.fav, ease: "linear", duration: 1, repeat: Math.floor(data.fav / 10), onUpdate: updateFav});
       })
       .catch(error => {
         console.error('Veri getirme hatası:', error);
       });
+  
+    function updateVisit() {
+      let visit = parseInt(document.getElementById("visit").textContent);
+      document.getElementById("visit").textContent = Math.min(visit + 10, data.visit);
+    }
+  
+    function updatePLR() {
+      let plr = parseInt(document.getElementById("plr").textContent);
+      document.getElementById("plr").textContent = Math.min(plr + 10, data.plr);
+    }
+  
+    function updateFav() {
+      let fav = parseInt(document.getElementById("fav").textContent);
+      document.getElementById("fav").textContent = Math.min(fav + 10, data.fav);
+    }
   });
   </script>
   
