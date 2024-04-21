@@ -73,15 +73,14 @@
 
 
 <script>
-  fetch('https://gamess.pythonanywhere.com/data') // API URL'yi buraya yerleştirin
+document.addEventListener('DOMContentLoaded', () => {
+  fetch('https://gamess.pythonanywhere.com/data')
     .then(response => response.json())
     .then(data => {
-      document.addEventListener('DOMContentLoaded', () => {
-        let tl = gsap.timeline();
-    tl.to("#visit", {textContent: data.visit, ease: "linear"}, "-=0.5")
-      .to("#plr", {textContent: data.plr, ease: "linear", duration: 0.6, onUpdate: updatePLR}, "-=0.5")
-      .to("#fav", {textContent: data.fav, ease: "linear", duration: 0.6, onUpdate: updateFav}, "-=0.5");
-      });
+      let tl = gsap.timeline();
+      tl.to("#visit", {textContent: data.visit, ease: "linear"}, "-=0.5")
+        .to("#plr", {textContent: data.plr, ease: "linear", duration: 0.6, onUpdate: updatePLR}, "-=0.5")
+        .to("#fav", {textContent: data.fav, ease: "linear", duration: 0.6, onUpdate: updateFav}, "-=0.5");
     })
     .catch(error => {
       console.error('Veri getirme hatası:', error);
