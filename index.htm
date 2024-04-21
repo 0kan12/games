@@ -69,17 +69,21 @@
 
     
 <script>
-  var visit=document.getElementById("visit")
-    var plr=document.getElementById("plr")
-    var fav=document.getElementById("fav")
-    fetch('https://gamess.pythonanywhere.com/data') // API URL'yi buraya yerleştirin
-  .then(response => response.json())
-  .then(data => {
-    fav.innerHTML=data.fav
-    plr.innerHTML=data.plr
-    visit.innerHTML=data.visit
-  })
-  .catch(error => console.error('Error fetching data:', error));
-</script>
+  fetch('https://gamess.pythonanywhere.com/data') // API URL'yi buraya yerleştirin
+    .then(response => response.json())
+    .then(data => {
+      document.addEventListener('DOMContentLoaded', () => {
+        let tl = gsap.timeline();
+  
+        tl.to("#visit", {end: data.visit, ease: "linear"}, "-=0.5")
+          .to("#plr", {end: data.plr, increment: 5, duration: 0.6}, "-=0.5")
+          .to("#fav", {end: data.fav, increment: 10}, "-=0.5");
+      });
+    })
+    .catch(error => {
+      console.error('Veri getirme hatası:', error);
+    });
+  </script>
+  
 </body>
 </html>
