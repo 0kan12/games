@@ -76,9 +76,9 @@
     fetch('https://gamess.pythonanywhere.com/data')
       .then(response => response.json())
       .then(data => {
-        gsap.to("#visit", {textContent: data.visit, ease: "linear", duration: 1, repeat: 9, onUpdate: updateVisit});
-        gsap.to("#plr", {textContent: data.plr, ease: "linear", duration: 1, repeat: 9, onUpdate: updatePLR});
-        gsap.to("#fav", {textContent: data.fav, ease: "linear", duration: 1, repeat: 9, onUpdate: updateFav});
+        gsap.to("#visit", {textContent: data.visit, ease: "linear", duration: 1,onUpdate: updateVisit});
+        gsap.to("#plr", {textContent: data.plr, ease: "linear", duration: 1, onUpdate: updatePLR});
+        gsap.to("#fav", {textContent: data.fav, ease: "linear", duration: 1, onUpdate: updateFav});
       })
       .catch(error => {
         console.error('Veri getirme hatası:', error);
