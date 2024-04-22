@@ -76,7 +76,7 @@
   const link = urlParams.get('link');
   const safeLink = encodeURIComponent(link);
   document.addEventListener('DOMContentLoaded', () => {
-    fetch('https://gamess.pythonanywhere.com/data'+safeLink)
+    fetch('https://gamess.pythonanywhere.com/data/'+safeLink)
       .then(response => response.json())
       .then(data => {
         gsap.to("#visit", {textContent: data.visit, ease: "linear", duration: 1, onUpdate: () => updateVisit(data)});
