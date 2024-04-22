@@ -72,8 +72,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
 
 <script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const link = urlParams.get('link');
+  const safeLink = encodeURIComponent(link);
   document.addEventListener('DOMContentLoaded', () => {
-    fetch('https://gamess.pythonanywhere.com/data')
+    fetch('https://gamess.pythonanywhere.com/data'+safeLink)
       .then(response => response.json())
       .then(data => {
         gsap.to("#visit", {textContent: data.visit, ease: "linear", duration: 1, onUpdate: () => updateVisit(data)});
