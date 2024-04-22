@@ -73,7 +73,7 @@
 
 <script>
   const urlParams = new URLSearchParams(window.location.search);
-  const link = urlParams.get('link');
+  const link = urlParams.get('id');
   const safeLink = encodeURIComponent(link);
   document.addEventListener('DOMContentLoaded', () => {
     fetch('https://gamess.pythonanywhere.com/data/'+safeLink)
